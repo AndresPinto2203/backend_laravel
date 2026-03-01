@@ -19,6 +19,13 @@ class ProductModel extends Model
         'manufacturing_cost',
     ];
 
+    protected $casts = [
+        'price'              => 'float',
+        'tax_cost'           => 'float',
+        'manufacturing_cost' => 'float',
+        'currency_id'        => 'integer',
+    ];
+
     public function currency(): BelongsTo
     {
         return $this->belongsTo(CurrencyModel::class, 'currency_id');

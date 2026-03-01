@@ -15,6 +15,12 @@ class ProductPriceModel extends Model
         'price',
     ];
 
+    protected $casts = [
+        'product_id'  => 'integer',
+        'currency_id' => 'integer',
+        'price'       => 'float',
+    ];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(ProductModel::class, 'product_id');

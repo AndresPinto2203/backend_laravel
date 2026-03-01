@@ -15,6 +15,10 @@ class CurrencyModel extends Model
         'exchange_rate',
     ];
 
+    protected $casts = [
+        'exchange_rate' => 'float',
+    ];
+
     public function products(): HasMany
     {
         return $this->hasMany(ProductModel::class, 'currency_id');
