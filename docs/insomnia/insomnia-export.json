@@ -1,0 +1,267 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-03-01T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:github-copilot",
+  "resources": [
+    {
+      "_id": "wrk_products_api",
+      "parentId": null,
+      "modified": 0,
+      "created": 0,
+      "name": "Products API – Prueba técnica",
+      "description": "Workspace para la API de productos con JWT.",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_products_api_base",
+      "parentId": "wrk_products_api",
+      "modified": 0,
+      "created": 0,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost",
+        "token": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url",
+          "token"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 0,
+      "_type": "environment"
+    },
+    {
+      "_id": "fld_auth",
+      "parentId": "wrk_products_api",
+      "modified": 0,
+      "created": 0,
+      "name": "Auth",
+      "description": "Autenticación JWT",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_products",
+      "parentId": "wrk_products_api",
+      "modified": 0,
+      "created": 0,
+      "name": "Products",
+      "description": "CRUD de productos",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -2,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_product_prices",
+      "parentId": "wrk_products_api",
+      "modified": 0,
+      "created": 0,
+      "name": "Product prices",
+      "description": "Precios por producto",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -3,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_login",
+      "parentId": "fld_auth",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/login",
+      "name": "Login",
+      "description": "Obtiene token JWT para el usuario admin seed.",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"admin@test.com\",\n  \"password\": \"admin_123456\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1,
+      "_type": "request"
+    },
+    {
+      "_id": "req_list_products",
+      "parentId": "fld_products",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/products",
+      "name": "List products",
+      "description": "Lista paginada de productos.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_product",
+      "parentId": "fld_products",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/products",
+      "name": "Create product",
+      "description": "Crea un nuevo producto.",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Test product\",\n  \"description\": \"Descripción de prueba\",\n  \"price\": 100.5,\n  \"currency_id\": 1,\n  \"tax_cost\": 21,\n  \"manufacturing_cost\": 50\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -2,
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_product",
+      "parentId": "fld_products",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/products/1",
+      "name": "Get product by id",
+      "description": "Obtiene un producto por ID.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -3,
+      "_type": "request"
+    },
+    {
+      "_id": "req_update_product",
+      "parentId": "fld_products",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/products/1",
+      "name": "Update product",
+      "description": "Actualiza parcialmente un producto.",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Producto actualizado\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -4,
+      "_type": "request"
+    },
+    {
+      "_id": "req_delete_product",
+      "parentId": "fld_products",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/products/1",
+      "name": "Delete product",
+      "description": "Elimina un producto por ID.",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -5,
+      "_type": "request"
+    },
+    {
+      "_id": "req_list_prices",
+      "parentId": "fld_product_prices",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/products/1/prices",
+      "name": "List product prices",
+      "description": "Lista los precios de un producto en distintas divisas.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_price",
+      "parentId": "fld_product_prices",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ base_url }}/api/products/1/prices",
+      "name": "Create product price",
+      "description": "Crea un nuevo precio en otra divisa para el producto.",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"currency_id\": 2,\n  \"price\": 90.25\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -2,
+      "_type": "request"
+    }
+  ]
+}

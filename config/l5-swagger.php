@@ -86,10 +86,10 @@ return [
             /*
              * Absolute path to directory where to export views
              */
-                        'analyser' => new \OpenApi\Analysers\ReflectionAnalyser([
-                            new \OpenApi\Analysers\AttributeAnnotationFactory(),
-                            new \OpenApi\Analysers\DocBlockAnnotationFactory(),
-                        ]),
+            'analyser' => new \OpenApi\Analysers\ReflectionAnalyser([
+                new \OpenApi\Analysers\AttributeAnnotationFactory,
+                new \OpenApi\Analysers\DocBlockAnnotationFactory,
+            ]),
 
             /*
              * Edit to set the api's base path
@@ -132,8 +132,8 @@ return [
 
             // Usar ReflectionAnalyser con soporte para atributos y PHPDoc (@OA\...)
             'analyser' => new \OpenApi\Analysers\ReflectionAnalyser([
-                new \OpenApi\Analysers\AttributeAnnotationFactory(),
-                new \OpenApi\Analysers\DocBlockAnnotationFactory(),
+                new \OpenApi\Analysers\AttributeAnnotationFactory,
+                new \OpenApi\Analysers\DocBlockAnnotationFactory,
             ]),
 
             /**
@@ -141,13 +141,6 @@ return [
              *
              * @link https://github.com/zircote/swagger-php/tree/master/Examples/processors/schema-query-parameter
              * @see \OpenApi\scan
-                'analyser' => new \OpenApi\Analysers\ReflectionAnalyser([
-                    new \OpenApi\Analysers\AttributeAnnotationFactory(),
-                ]),
-
-            /**
-             * pattern: string       $pattern File pattern(s) to scan (default: *.php) .
-             *
              * @see \OpenApi\scan
              */
             'pattern' => null,
