@@ -15,6 +15,7 @@ use App\Http\Resources\ProductResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
+use OpenApi\Annotations as OA;
 
 class ProductController extends Controller
 {
@@ -26,6 +27,29 @@ class ProductController extends Controller
         private DeleteProduct $deleteProduct,
     ) {}
 
+    /**
+     * @OA\Get(
+     *     path="/api/products",
+     *     tags={"Products"},
+     *     summary="Obtener lista de productos",
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         description="Elementos por página",
+     *         required=false,
+     *         @OA\Schema(type="integer", default=15)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Lista paginada de productos"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No autenticado"
+     *     )
+     * )
+     */
     public function index(Request $request)
     {
         $perPage = (int) $request->get('per_page', 15);
