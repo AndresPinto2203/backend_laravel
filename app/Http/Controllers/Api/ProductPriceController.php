@@ -26,19 +26,11 @@ class ProductPriceController extends Controller
 
     public function store(StoreProductPriceRequest $request, int $productId): JsonResponse
     {
-        // try {
-        //     $price = $this->createProductPrice->execute($productId, $request->validated());
-        // } catch (InvalidArgumentException $e) {
-        //     return response()->json(['message' => $e->getMessage()], 422);
-        // }
-        // dd('store product price');
-
         try {
             $price = $this->createProductPrice->execute($productId, $request->validated());
         } catch (InvalidArgumentException $e) {
             return response()->json(['message' => $e->getMessage()], 422);
         } catch (Throwable $e) {
-            // Solo para depuración en desarrollo
             return response()->json([
                 'message' => $e->getMessage(),
             ], 500);
